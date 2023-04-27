@@ -12,15 +12,15 @@ def test_name_setter():
 
     # длина наименования товара меньше 10 символов
     item.name = 'Смартфон'
-    assert item._name == 'Смартфон'
+    assert item.name == 'Смартфон'
 
     # длина наименования товара равна 10 символов
     item.name = '0123456789'
-    assert item._name == '0123456789'
+    assert item.name == '0123456789'
 
     # длина наименования товара больше 10 символов
     item.name = 'СуперСмартфон'
-    assert item._name != 'СуперСмартфон'
+    assert item.name != 'СуперСмартфон'
 
 
 def test_string_to_number():
