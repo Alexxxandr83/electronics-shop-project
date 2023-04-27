@@ -17,18 +17,18 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self._name = name
+        self.__name = name
         self.price = price
         self.quantity = quantity
 
     @property
     def name(self):
-        return self._name
+        return self.__name
 
     @name.setter
     def name(self, name):
         if len(name) <= 10:
-            self._name = name
+            self.__name = name
         else:
             return print('Длина наименования товара превышает 10 символов')
 
