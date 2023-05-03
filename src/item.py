@@ -27,6 +27,10 @@ class Item:
     def __str__(self):
         return self.__name
 
+    def __add__(self, other):
+        if isinstance(self, Item):
+            return self.quantity + other.quantity
+
     @property
     def name(self):
         return self.__name
