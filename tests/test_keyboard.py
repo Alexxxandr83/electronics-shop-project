@@ -13,11 +13,10 @@ def test_str():
     kb = Keyboard('Test Keyboard', 900, 1)
     assert str(kb) == 'Test Keyboard'
 
-def test_KeybMixin():
-    k = Keyboard('Test Keyboard', 900, 1)
+def test_keybmixin():
     kb = KeybMixin()
     assert kb._language == 'EN'
-    KeybMixin.change_lang(k)
+    kb.change_lang() # измененный вызов метода
     assert kb._language == "RU"
-    KeybMixin.change_lang()
-    assert Kb._language == "EN"
+    kb.change_lang() # измененный вызов метода
+    assert kb._language == "EN"
