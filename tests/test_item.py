@@ -36,7 +36,15 @@ def test_string_to_number():
 
 
 def test_instantiate_from_csv():
-    Item.instantiate_from_csv()
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv()
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv()
+    Item.all.clear()
+    try:
+        Item.instantiate_from_csv()
+    except InstantiateCSVError:
+        pass
     assert len(Item.all) == 5
     assert Item.all[0].name == "Смартфон"
     assert Item.all[1].name == "Ноутбук"

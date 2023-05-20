@@ -2,6 +2,10 @@ import csv
 import os
 
 
+class InstantiateCSVError(Exception):
+    pass
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -61,24 +65,31 @@ class Item:
         """класс-метод, инициализирующий экземпляры класса `Item` данными из файла _src/items.csv_"""
         file_path = os.path.join(os.path.dirname(__file__), 'items.csv')
         try:
-            with open(file_path, "r") as file:
+            with open(file_path, 'r') as file:
                 reader = csv.DictReader(file)
-                required_columns = {'name', 'price', 'quantity'}
-                if set(reader.fieldnames) != required_columns:
-                    raise InstantiateCSVError
-
                 for row in reader:
-                    item = cls(row['name'], cls.string_to_number(row['price']), int(row['quantity']))
+                    try:
+                        item = cls(row['name'], cls.string_to_number(row['price']), int(row['quantity']))
+                    except ValueError:
+                        raise InstantiateCSVError("Файл items.csv поврежден")
                     cls.all.append(item)
-        except FileNotFoundError as e:
-            print('Отсутствует файл item.csv')
-        except InstantiateCSVError as e:
-            print('Файл item.csv поврежден')
-
+        except FileNotFoundError:
+            raise FileNotFoundError("Отсутствует файл items.csv")
     @staticmethod
     def string_to_number(value):
         return int(float(value))
-
-
-class InstantiateCSVError(Exception):
-    pass
+# file_path = os.path.join(os.path.dirname(__file__), 'items.csv')
+        # try:
+        #     with open(file_path, "r") as file:
+        #         reader = csv.DictReader(file)
+        #         required_columns = {'name', 'price', 'quantity'}
+        #         if set(reader.fieldnames) != required_columns:
+        #             raise InstantiateCSVError
+        #
+        #         for row in reader:
+        #             item = cls(row['name'], cls.string_to_number(row['price']), int(row['quantity']))
+        #             cls.all.append(item)
+        # except FileNotFoundError as e:
+        #     print('Отсутствует файл item.csv')
+        # except InstantiateCSVError as e:
+        #     print('Файл item.csv поврежден')
