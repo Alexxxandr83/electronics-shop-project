@@ -75,21 +75,7 @@ class Item:
                     cls.all.append(item)
         except FileNotFoundError:
             raise FileNotFoundError("Отсутствует файл items.csv")
+
     @staticmethod
     def string_to_number(value):
         return int(float(value))
-# file_path = os.path.join(os.path.dirname(__file__), 'items.csv')
-        # try:
-        #     with open(file_path, "r") as file:
-        #         reader = csv.DictReader(file)
-        #         required_columns = {'name', 'price', 'quantity'}
-        #         if set(reader.fieldnames) != required_columns:
-        #             raise InstantiateCSVError
-        #
-        #         for row in reader:
-        #             item = cls(row['name'], cls.string_to_number(row['price']), int(row['quantity']))
-        #             cls.all.append(item)
-        # except FileNotFoundError as e:
-        #     print('Отсутствует файл item.csv')
-        # except InstantiateCSVError as e:
-        #     print('Файл item.csv поврежден')
