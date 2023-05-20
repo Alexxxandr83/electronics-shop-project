@@ -1,6 +1,10 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
+import pytest
+
 from src.item import Item
 from src.phone import Phone
+import csv
+import os
 
 item1 = Item("Смартфон", 10000, 20)
 
@@ -36,6 +40,10 @@ def test_instantiate_from_csv():
     assert len(Item.all) == 5
     assert Item.all[0].name == "Смартфон"
     assert Item.all[1].name == "Ноутбук"
+
+
+class InstantiateCSVError(Exception):
+    pass
 
 
 def test_repr():
