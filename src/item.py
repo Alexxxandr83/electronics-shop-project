@@ -32,6 +32,14 @@ class Item:
         return self.__name
 
     def __add__(self, other):
+          """
+    Метод, выполняющий сложение двух объектов.
+
+    :param other: Второй объект, с которым выполняется сложение.
+    :type other: object
+    :return: Сумма количества текущего объекта и количества другого объекта.
+    :rtype: int
+    """
         if isinstance(self, Item):
             return self.quantity + other.quantity
 
