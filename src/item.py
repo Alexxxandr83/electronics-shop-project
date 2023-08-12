@@ -85,5 +85,18 @@ class Item:
             raise FileNotFoundError("Отсутствует файл items.csv")
 
     @staticmethod
+  """
+    Преобразует строковое значение в число.
+
+    Аргументы:
+    - value (str): Строковое значение, которое нужно преобразовать в число.
+
+    Возвращает:
+    - int: Числовое значение, полученное после преобразования строки.
+
+    Пример использования:
+    >>> string_to_number("3.14")
+    3
+    """
     def string_to_number(value):
         return int(float(value))
